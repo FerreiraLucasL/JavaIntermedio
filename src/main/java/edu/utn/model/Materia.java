@@ -8,6 +8,7 @@ public class Materia {
     private LocalDate fechaInicio;
     private LocalDate fechaFinal;
     private Set<Alumno> alumnos = new HashSet<>();
+    private Set<Materia> correlativas = new HashSet<>();
 
     public Materia() {}
 
@@ -15,6 +16,13 @@ public class Materia {
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
+    }
+
+    public Materia(String nombre, LocalDate fechaInicio, LocalDate fechaFinal, Set<Materia> correlativas) {
+        this.nombre = nombre;
+        this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
+        this.correlativas = correlativas;
     }
 
     public String getNombre() {
@@ -44,6 +52,7 @@ public class Materia {
     public void setFechaFinal(LocalDate fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
+
     @Override
     public String toString() {
         return "Materia{" +
@@ -51,6 +60,7 @@ public class Materia {
                 ", fechaInicio=" + fechaInicio +
                 ", fechaFinal=" + fechaFinal +
                 ", alumnos=" + alumnos +
+                ", correlativas=" + correlativas +
                 '}';
     }
 }

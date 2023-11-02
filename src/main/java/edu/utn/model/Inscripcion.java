@@ -4,4 +4,5 @@ public class Inscripcion {
     public boolean aprobada(){
         return false;
     }
+
 }
