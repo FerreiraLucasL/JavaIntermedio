@@ -4,44 +4,26 @@ package edu.utn;
 import edu.utn.actividad1.model.Alumno;
 import edu.utn.actividad1.model.Inscripcion;
 import edu.utn.actividad1.model.Materia;
+import edu.utn.actividad2.Transformador;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-    Alumno pedro = new Alumno("Alcaraz","Pedro" );
-    Materia algoritmos = new Materia("Algoritmos", 1);
-    Materia estructurasDeDatos = new Materia("Estructuras de Datos", 1);
-    //set de correlativas de esta materia en específico
-    Set<Materia> correlativasParadigmas = new HashSet<>();
-    correlativasParadigmas.add(algoritmos);
-    correlativasParadigmas.add(estructurasDeDatos);
-    Materia paradigmasDeProgramacion = new Materia("Paradigmas de la programacion", 2 ,correlativasParadigmas );
+        String [] meses = {"Enero","Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+        List<String> listaMeses = Arrays.asList(meses);
 
-    Set<Materia> correlativasDiseñoSistemas = new HashSet<>();
-    correlativasDiseñoSistemas.add(paradigmasDeProgramacion);
-    Materia diseñoDeSistemas = new Materia("Diseño de Sistemas",3,correlativasDiseñoSistemas );
+        Transformador mesesMayuscula = (List<String> mesesMinuscula) -> {
+            return mesesMinuscula.stream()
+                    .map(m -> m.toUpperCase())
+                    .collect(Collectors.toList());
+        };
 
-    Inscripcion inscribirNivel1 = (alumno, materia) -> {
-        if(materia.getNivel() == 1){
-            alumno.getMaterias().add(materia);
-            return true;
-        }else{
-            return false;
-        }
-    };
-
-    Inscripcion inscribirConCorrelativas = (alumno, materia) -> {
-        return alumno.getMaterias().stream()
-                .allMatch(m -> materia.getCorrelativas().contains(m));
-    };
-
-    System.out.println(inscribirNivel1.inscribir(pedro, algoritmos));
-    inscribirNivel1.inscribir(pedro, estructurasDeDatos);
-    System.out.println(inscribirConCorrelativas.inscribir(pedro, paradigmasDeProgramacion));
-    System.out.println(pedro.toString());
-    System.out.println(diseñoDeSistemas.toString());
+        System.out.println(mesesMayuscula.transformar(listaMeses));
     }
 }
