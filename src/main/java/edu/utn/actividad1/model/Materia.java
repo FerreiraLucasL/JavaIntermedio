@@ -1,21 +1,22 @@
-package edu.utn.model;
+package edu.utn.actividad1.model;
 
-import java.time.LocalDate;
 import java.util.*;
 
 public class Materia {
     private String nombre;
-    private Set<Alumno> alumnos = new HashSet<>();
+    private int nivel;
     private Set<Materia> correlativas = new HashSet<>();
 
     public Materia() {}
 
-    public Materia(String nombre) {
+    public Materia(String nombre, int nivel){
         this.nombre = nombre;
+        this.nivel=nivel;
     }
 
-    public Materia(String nombre, Set<Materia> correlativas) {
+    public Materia(String nombre, int nivel ,Set<Materia> correlativas) {
         this.nombre = nombre;
+        this.nivel=nivel;
         this.correlativas = correlativas;
     }
 
@@ -23,8 +24,13 @@ public class Materia {
         return nombre;
     }
 
-    public Set<Alumno> getAlumnos() {
-        return alumnos;
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public Set<Materia> getCorrelativas() {
+        return correlativas;
     }
 
     public void setNombre(String nombre) {
@@ -37,8 +43,7 @@ public class Materia {
     public String toString() {
         return "Materia{" +
                 "nombre='" + nombre + '\'' +
-                ", alumnos=" + alumnos +
-                ", correlativas=" + correlativas +
+                "nivel ='" + nivel +
                 '}';
     }
 }
